@@ -1,0 +1,37 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard {
+    width: clamp(200px, 25vw, 500px);
+    height: clamp(200px, 25vw, 500px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10px, 1fr));
+    grid-template-rows: repeat(3, minmax(10px, 1fr));
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid gray;
+}
+
+.row-1 {
+    border-top: none;
+}
+
+.row-3 {
+    border-bottom: none;
+}
+
+.column-1 {
+    border-left: none;
+}
+
+.column-3 {
+    border-right: none;
+}
