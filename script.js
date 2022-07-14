@@ -1,5 +1,4 @@
 let xTurn = true;
-let canPlay = true;
 const gameBoard = (() => {
     const getTurn = () => {
         return (xTurn ? "X" : "O");
@@ -17,13 +16,16 @@ const gameBoard = (() => {
         return yCoord;
     }
     const makeNewGame = () => {
+        xTurn = true;
+        const winnerDeclaration = document.querySelector(".winner-declaration");
+        winnerDeclaration.textContent = "";
         const boardCells = document.querySelectorAll(".cell");
         let gameBoardArray = [["", "", ""], ["", "", ""], ["", "", ""]];
         boardCells.forEach(cell => cell.textContent = "");
         boardCells.forEach(cell => cell.addEventListener("click", function () { updateBoard(getCellXCoordinate(cell), getCellYCoordinate(cell), getTurn(), gameBoardArray) }));
     }
     const updateBoard = (x, y, value, gameBoardArray) => {
-        if (gameBoardArray[y - 1][x - 1] || !canPlay) {
+        if (gameBoardArray[y - 1][x - 1]) {
             return;
         }
         gameBoardArray[y - 1][x - 1] = value;
@@ -46,7 +48,7 @@ const gameBoard = (() => {
             if (x === y && ((gameBoardArray[(y - 1) % 3][(x - 1) % 3] === gameBoardArray[y % 3][x % 3] && gameBoardArray[y % 3][x % 3] === gameBoardArray[(y + 1) % 3][(x + 1) % 3]))) {
                 declareWinner(gameBoardArray[y - 1][x - 1]);
             }
-            else if(x!== y || x === 2){
+            else if (x !== y || x === 2) {
                 if (gameBoardArray[2][0] === gameBoardArray[1][1] && gameBoardArray[1][1] === gameBoardArray[0][2]) {
                     declareWinner(gameBoardArray[y - 1][x - 1]);
                 }
@@ -54,9 +56,28 @@ const gameBoard = (() => {
         }
     }
     const declareWinner = (winner) => {
-        const winnerDeclaration = document.querySelector(".winnerDeclaration");
+        const winnerDeclaration = document.querySelector(".winner-declaration");
         winnerDeclaration.textContent = `${winner} is the winner!`;
-        canPlay = false;
+        endGame();
+    }
+    const endGame = () => {
+        boardCells = document.querySelectorAll(".cell");
+        boardCells.forEach(cell => replaceCell(cell));
+        addReplayButton();
+    }
+    const replaceCell = (cell) => {
+        const newCell = cell.cloneNode(true);
+        cell.parentNode.replaceChild(newCell, cell);
+    }
+    const addReplayButton = () => {
+        const board = document.querySelector(".gameboard");
+        const replayButton = document.createElement("button");
+        replayButton.textContent = "Replay";
+        replayButton.setAttribute("type", "button");
+        replayButton.classList.add("replay");
+        replayButton.addEventListener("click", makeNewGame);
+        replayButton.addEventListener("click", () => replayButton.parentElement.removeChild(replayButton));
+        board.appendChild(replayButton);
     }
     return { makeNewGame };
 })();
