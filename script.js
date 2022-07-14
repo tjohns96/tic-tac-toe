@@ -84,9 +84,9 @@ const gameBoard = (() => {
 const playerControls = (() => {
     const setPlayerSelect = () => {
         const playerSelect = document.querySelector(".player-select");
-        playerSelect.addEventListener("change", function () { chooseComputer(playerSelect) });
+        playerSelect.addEventListener("change", function () { toggleDifficultySelect(playerSelect) });
     }
-    const chooseComputer = (playerSelect) => {
+    const toggleDifficultySelect = (playerSelect) => {
         if (playerSelect.value === "computer") {
             const playerSelectArea = document.querySelector(".player-select-area");
             let difficultySelect = document.createElement("select");
