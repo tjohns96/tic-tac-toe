@@ -81,4 +81,31 @@ const gameBoard = (() => {
     }
     return { makeNewGame };
 })();
+const playerControls = (() => {
+    const setPlayerSelect = () => {
+        const playerSelect = document.querySelector(".player-select");
+        playerSelect.addEventListener("change", function () { chooseComputer(playerSelect) });
+    }
+    const chooseComputer = (playerSelect) => {
+        if (playerSelect.value === "computer") {
+            const playerSelectArea = document.querySelector(".player-select-area");
+            let difficultySelect = document.createElement("select");
+            difficultySelect.classList.add("difficulty-select");
+            let easyOption = document.createElement("option");
+            let hardOption = document.createElement("option");
+            easyOption.setAttribute("value", "easy");
+            hardOption.setAttribute("value", "hard");
+            easyOption.textContent = "Easy";
+            hardOption.textContent = "Hard";
+            difficultySelect.append(easyOption, hardOption);
+            playerSelectArea.appendChild(difficultySelect);
+        }
+        else{
+            const difficultySelect = document.querySelector(".difficulty-select");
+            difficultySelect.parentElement.removeChild(difficultySelect);
+        }
+    }
+    return { setPlayerSelect };
+})();
 gameBoard.makeNewGame();
+playerControls.setPlayerSelect(); 
