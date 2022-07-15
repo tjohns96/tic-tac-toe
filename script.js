@@ -81,7 +81,7 @@ const gameBoard = (() => {
     }
     return { makeNewGame };
 })();
-const playerControls = (() => {
+const gameSettings = (() => {
     const setPlayerSelect = () => {
         const playerSelect = document.querySelector(".player-select");
         playerSelect.addEventListener("change", function () { toggleDifficultySelect(playerSelect) });
@@ -89,23 +89,44 @@ const playerControls = (() => {
     const toggleDifficultySelect = (playerSelect) => {
         if (playerSelect.value === "computer") {
             const playerSelectArea = document.querySelector(".player-select-area");
+            const sideSelectArea = document.querySelector(".side-select-area");
             let difficultySelect = document.createElement("select");
             difficultySelect.classList.add("difficulty-select");
             let easyOption = document.createElement("option");
             let hardOption = document.createElement("option");
+            let xOption = document.createElement("button");
+            let oOption = document.createElement("button");
             easyOption.setAttribute("value", "easy");
             hardOption.setAttribute("value", "hard");
             easyOption.textContent = "Easy";
             hardOption.textContent = "Hard";
+            xOption.classList.add("x", "side-select-button");
+            oOption.classList.add("o", "side-select-button");
+            xOption.disabled = true;
+            xOption.textContent = "X";
+            oOption.textContent = "O";
+            xOption.addEventListener("click", toggleSide);
+            oOption.addEventListener("click", toggleSide);
             difficultySelect.append(easyOption, hardOption);
             playerSelectArea.appendChild(difficultySelect);
+            sideSelectArea.append(xOption, oOption);
         }
-        else{
+        else {
             const difficultySelect = document.querySelector(".difficulty-select");
+            const xOption = document.querySelector(".x");
+            const oOption = document.querySelector(".o");
             difficultySelect.parentElement.removeChild(difficultySelect);
+            xOption.parentElement.removeChild(xOption);
+            oOption.parentElement.removeChild(oOption);
         }
+    }
+    const toggleSide = () => {
+        sideSelectButtons = document.querySelectorAll(".side-select-button");
+        sideSelectButtons.forEach(sideSelectButton => {
+            sideSelectButton.disabled = !sideSelectButton.disabled;
+        });
     }
     return { setPlayerSelect };
 })();
 gameBoard.makeNewGame();
-playerControls.setPlayerSelect(); 
+gameSettings.setPlayerSelect(); 

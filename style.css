@@ -3,7 +3,7 @@ body {
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "playerSelectArea ."
+    grid-template-areas: "playerSelectArea side-select-area"
         "gameboard gameboard"
         "winnerDeclaration winnerDeclaration";
 }
@@ -75,7 +75,8 @@ button {
     text-align: center;
     bottom: -100px;
 }
-.player-select-area{
+
+.player-select-area {
     box-sizing: border-box;
     grid-area: playerSelectArea;
     display: flex;
@@ -83,12 +84,50 @@ button {
     padding: 32px 0px 0px 32px;
     gap: 24px;
 }
-select{
+
+select {
     height: 32px;
 }
-.player-select{
+
+.player-select {
     width: clamp(200px, 20vw, 400px);
 }
-.difficulty-select{
+
+.difficulty-select {
     width: clamp(150px, 10vw, 300px);
+}
+
+.side-select-area {
+    grid-area: side-select-area;
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+}
+
+.side-select-button {
+    position: relative;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    height: 64px;
+    width: 164px;
+    border-radius: 6px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.side-select-button:disabled {
+    top: 2px;
+    left: 1px;
+    box-shadow: none;
+    color: black;
+}
+
+.x {
+    background-color: rgba(51, 106, 189, 0.75);
+}
+
+.o {
+    background-color: #ba2929;
 }
