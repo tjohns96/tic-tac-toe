@@ -6,7 +6,7 @@ body {
     grid-template-areas: "playerSelectArea side-select-area"
         "gameboard gameboard"
         "winnerDeclaration winnerDeclaration";
-        background-color: #818181;
+    background-color: #818181;
 }
 
 .gameboard {
@@ -20,6 +20,9 @@ body {
     grid-template-columns: repeat(3, minmax(10px, 1fr));
     grid-template-rows: repeat(3, minmax(10px, 1fr));
     background-color: white;
+    box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.75);
 }
 
 .cell {
@@ -31,23 +34,25 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2rem;
 }
-.cell:hover{
+
+.cell:hover {
     background-color: rgb(207, 207, 207);
 }
+
 .row-1 {
-    border-top: none;
+    border-top: 4px solid black;
 }
 
 .row-3 {
-    border-bottom: none;
+    border-bottom: 4px solid black;
 }
 
 .column-1 {
-    border-left: none;
+    border-left: 4px solid black;
 }
 
 .column-3 {
-    border-right: none;
+    border-right: 4px solid black;
 }
 
 .winner-declaration {
@@ -77,14 +82,17 @@ button {
     right: 0;
     text-align: center;
 }
-.start-button{
+
+.start-button {
     font-size: 1.5rem;
     top: -100px;
 }
-.replay-button{
+
+.replay-button {
     font-size: 2rem;
     bottom: -100px;
 }
+
 .player-select-area {
     box-sizing: border-box;
     grid-area: playerSelectArea;
@@ -130,7 +138,8 @@ select {
     top: 2px;
     left: 1px;
     box-shadow: none;
-    border: 2px solid rgba(102, 255, 0, 0.75);;
+    border: 2px solid rgba(102, 255, 0, 0.75);
+    ;
     color: black;
 }
 
