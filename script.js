@@ -174,7 +174,7 @@ const gameSettings = (() => {
             difficultySelect.classList.add("difficulty-select");
             let easyOption = document.createElement("option");
             let hardOption = document.createElement("option");
-            let unbeatableOption = document.createElement("option");     
+            let unbeatableOption = document.createElement("option");
             let xOption = document.createElement("button");
             let oOption = document.createElement("button");
             let startButton = document.createElement("button");
@@ -209,11 +209,15 @@ const gameSettings = (() => {
             startButton.parentElement.removeChild(startButton);
         }
     }
-    const toggleSide = () => {
-        sideSelectButtons = document.querySelectorAll(".side-select-button");
-        sideSelectButtons.forEach(sideSelectButton => {
-            sideSelectButton.classList.toggle("disabled");
-        });
+    function toggleSide () {
+        const disabledSide = document.querySelector(".disabled");
+        if (this.classList.contains("disabled")) {
+            return;
+        }
+        else {
+            this.classList.add("disabled");
+            disabledSide.classList.remove("disabled");
+        }
     }
     return { setPlayerSelect, toggleSide };
 })();
@@ -326,12 +330,12 @@ const aiController = (() => {
         }
         setTimeout(function () { gameBoard.updateBoard(bestMove[0] + 1, bestMove[1] + 1, compSide) }, 1000);
     }
-    const hardAI = ()=>{
-        randomNum = Math.floor(Math.random()*100);
-        if(randomNum<25){
+    const hardAI = () => {
+        randomNum = Math.floor(Math.random() * 100);
+        if (randomNum < 25) {
             easyAI();
         }
-        else{
+        else {
             findBestMove();
         }
     }

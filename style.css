@@ -6,6 +6,7 @@ body {
     grid-template-areas: "playerSelectArea side-select-area"
         "gameboard gameboard"
         "winnerDeclaration winnerDeclaration";
+        background-color: #818181;
 }
 
 .gameboard {
@@ -18,6 +19,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(10px, 1fr));
     grid-template-rows: repeat(3, minmax(10px, 1fr));
+    background-color: white;
 }
 
 .cell {
@@ -128,6 +130,7 @@ select {
     top: 2px;
     left: 1px;
     box-shadow: none;
+    border: 2px solid rgba(102, 255, 0, 0.75);;
     color: black;
 }
 
